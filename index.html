@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="shortcut icon" type="image/jpg" href="img/logo.jpg">
+    <link rel="manifest" href="manifest.json">
+    <title>Snake Challenge</title>
+</head>
+
+<body>
+    <div class="background">
+    </div>
+    <div class="game">
+        <div id="speed_box">
+            <h3 id="speed_heading">speed</h3>
+            <p id="speed">0</p>
+        </div>
+        <div id="score_box">
+            <h3 id="score_heading">score</h3>
+            <p id="score">0</p>
+        </div>
+        <div id="game_over">
+            <h2 id="game_over_heading">Game Over</h2>
+            <div id="game_over_score_box">
+                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="apple-alt" class="score_heading svg-inline--fa fa-apple-alt fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M350.85 129c25.97 4.67 47.27 18.67 63.92 42 14.65 20.67 24.64 46.67 29.96 78 4.67 28.67 4.32 57.33-1 86-7.99 47.33-23.97 87-47.94 119-28.64 38.67-64.59 58-107.87 58-10.66 0-22.3-3.33-34.96-10-8.66-5.33-18.31-8-28.97-8s-20.3 2.67-28.97 8c-12.66 6.67-24.3 10-34.96 10-43.28 0-79.23-19.33-107.87-58-23.97-32-39.95-71.67-47.94-119-5.32-28.67-5.67-57.33-1-86 5.32-31.33 15.31-57.33 29.96-78 16.65-23.33 37.95-37.33 63.92-42 15.98-2.67 37.95-.33 65.92 7 23.97 6.67 44.28 14.67 60.93 24 16.65-9.33 36.96-17.33 60.93-24 27.98-7.33 49.96-9.67 65.94-7zm-54.94-41c-9.32 8.67-21.65 15-36.96 19-10.66 3.33-22.3 5-34.96 5l-14.98-1c-1.33-9.33-1.33-20 0-32 2.67-24 10.32-42.33 22.97-55 9.32-8.67 21.65-15 36.96-19 10.66-3.33 22.3-5 34.96-5l14.98 1 1 15c0 12.67-1.67 24.33-4.99 35-3.99 15.33-10.31 27.67-18.98 37z"></path></svg>
+                <p id="game_over_score"> 0</p>
+            </div>
+        </div>
+        <div id="counter">
+            <p id="count"></p>
+        </div>
+        <button class="btn_reset">Play again &rarr;</button>
+        <button class="btn_back">Back &larr;</button>
+        <div class="choose_level">
+            <h3 class="level_heading">Choose a level</h3>
+            <form id="list_levels">
+                <input type="radio" id="Easy" name="level" value="Easy" class="level">
+                <label for="Easy" class="label_level ">Easy</label><br>
+                <input type="radio" id="Medium" name="level" value="Medium" class="level" checked="checked">
+                <label for="Medium" class="label_level ">Medium</label><br>
+                <input type="radio" id="Hard" name="level" value="Hard" class="level">
+                <label for="Hard" class="label_level ">Hard</label>
+            </form>
+
+            <button id="submit_level" class="btn_submit">Play</button>
+        </div>
+        <div class="choose_strategy">
+            <h3 class="strategy_heading">Choose a Strategy</h3>
+            <form id="list_strategy">
+                <input type="radio" id="Greedy" name="strategy" value="Greedy" class="strategy">
+                <label for="Greedy" class="label_strategy ">Greedy</label><br>
+                <input type="radio" id="BFS" name="strategy" value="BFS" class="strategy" checked="checked">
+                <label for="BFS" class="label_strategy ">BFS</label><br>
+            </form>
+            <button id="submit_strategy" class="btn_submit">Play</button>
+        </div>
+    </div>
+
+    <div class="help">
+        <h1>Instructions</h1>
+        <ol class="dir_help">
+            <h2>Control the snake</h2>
+            <li>
+                <p>use / swipe <span class="contr_but">&#8593;</span> for up</p>
+            </li>
+            <li>
+                <p>use / swipe <span class="contr_but">&#8594;</span> for right</p>
+            </li>
+            <li>
+                <p>use / swipe <span class="contr_but">&#8595;</span> for down</p>
+            </li>
+            <li>
+                <p>use / swipe <span class="contr_but">&#8592;</span> for left</p>
+            </li>
+        </ol>
+        <div class="scoring">
+            <p>Eat the apples <span><img src="img/food.jpg" class="food"></span> to increase your score and avoid the obstacles <span class="obstacle"></span> .
+            </p>
+        </div>
+        <p>Press <span class="contr_but">Back &#8592;</span> to exit the challenge whenever you want</p>
+    </div>
+
+    <div class="home_page">
+        <div class="title">
+            <h1>Take the Challenge?</h1>
+        </div>
+        <ul class="list_options">
+            <li><button class="options options--1">New game</button></li>
+            <li><button class="options options--2">Quick Demo</button></li>
+            <li><button class="options options--4 ">High scores</button></li>
+            <li><button class="options options--3">Instructions</button></li>
+        </ul>
+    </div>
+    <script src="snake.js"></script>
+</body>
+
+</html>

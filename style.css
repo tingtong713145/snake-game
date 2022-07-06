@@ -1,0 +1,438 @@
+*, *::after, *::before {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+}
+
+body {
+-webkit-box-sizing: border-box;
+        box-sizing: border-box;
+font-size: 1.6rem;
+perspective: 1000px;
+position: fixed;
+line-height: 1.7;
+height: 100vh;
+width: 100vw;
+overflow: hidden;
+}
+html {
+scroll-behavior: smooth;
+font-size: 62.54%;
+}
+/* for mozilla */
+::-moz-focus-inner {border:0;}
+/*  */
+.game{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  transition: all 0.8s ease;
+}
+
+.background{
+position: absolute;
+width: 100vw;
+height: 99.9vh;
+background-image: linear-gradient(to bottom,
+#00FF00,
+white),url(img/jungle.jpg);
+background-size: cover;
+background-position: center;
+background-blend-mode: color-burn;
+text-align: center;
+}
+
+/* form */
+
+.choose_level, .choose_strategy{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  text-align: center;
+  display: none;
+}
+
+.level_heading, .strategy_heading{
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-weight: 300;
+  font-size: 2.2rem;
+}
+
+.level, .strategy{
+display: none;
+}
+
+.label_level, .label_strategy{
+color: white;
+text-transform: uppercase;
+letter-spacing: 3px;
+padding: 3px 1rem;
+border-radius: 4px;
+display: inline-block;
+margin-top: 1.4rem;
+cursor: pointer;
+transition: transform 0.4s ease;
+}
+
+.level:checked +*, .strategy:checked +*{
+border: 2px solid tomato;
+background-image: linear-gradient(to right,
+#00FF00,
+#1b572b);
+color: white;
+transform: translateY(-2px);
+}
+
+.level:checked +*:hover,.label_level:hover, .strategy:checked +*:hover,.label_strategy:hover{
+  transform: translateY(-5px);
+}
+
+
+.btn_submit{
+  display: block;
+  margin: 2rem auto;
+  padding: 1rem;
+  font-size: 1.6rem;
+  border-radius: 5px;
+  text-transform: uppercase;
+  outline: none;
+  transition: all 0.4s ease;
+}
+
+.btn_submit:hover{
+  transform: translateY(-5px);
+}
+
+/* form */
+
+#counter{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+#counter p{
+  color: white;
+  font-size: 4rem;
+  font-family: 'Pangolin', cursive;
+}
+
+#score_box,#speed_box{
+  position: absolute;
+  background-color: green;
+  padding: 1rem 1.5rem;
+  border-radius: 4px;
+  display: inline-block;
+  transition: all 0.8s ease;
+  z-index: -10;
+}
+
+#score_box{text-align: left;}
+#speed_box{
+text-align: right;
+right: 0;
+}
+
+#score_heading,#speed_heading{
+text-transform: uppercase;
+margin-bottom: 4px;
+color: white;
+}
+
+#score,#speed{
+  background-color: white;
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 600;
+  border-radius: 2px;
+  padding:3px 5px;
+}
+
+#snake{
+  filter : blur(3px) brightness(50%);
+  box-shadow: 0 1rem 3rem rgba(0,0,0,0,0.4);
+  transition: all 0.4s ease;
+}
+
+.btn_reset{
+  position: absolute;
+  display: inline-block;
+  border: none;
+  top: 90%;
+  left: 50%;
+  border-radius: 3px;
+  background-image: linear-gradient(to right,
+  #00FF00,
+  #1b572b);
+  transform: translate(-50%,-10%);
+  cursor: pointer;
+  padding: 1rem 1.5rem ;
+  font-family: inherit;
+  text-transform: uppercase;
+  color: white;
+  font-weight: 400;
+  font-size: 1.5rem;
+  border: 0 solid #1b572b;
+  letter-spacing: 4px;
+  box-shadow: 1rem 2rem 2rem rgba(0,0,0,0.5);
+  outline: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.8s ease;
+}
+
+.btn_reset:hover{
+border: 5px solid #1b572b;
+transform: translate(-50%,-10px) !important; 
+box-shadow: 1rem 2rem 4rem rgba(0,0,0,0.5);
+}
+
+.btn_back{
+position: absolute;
+  display: inline-block;
+  border: none;
+  top: 0%;
+  left: 50%;
+  border-radius: 3px;
+  background-image: linear-gradient(to right,
+  #00FF00,
+  #1b572b);
+  transform: translate(-50%,0%);
+  cursor: pointer;
+  padding: 1rem 1.5rem ;
+  font-family: inherit;
+  text-transform: uppercase;
+  color: white;
+  font-weight: 400;
+  font-size: 1.5rem;
+  border: 0 solid #1b572b;
+  letter-spacing: 4px;
+  box-shadow: 1rem 2rem 2rem rgba(0,0,0,0.5);
+  outline: none;
+  z-index: 1000;
+  transition: all 0.4s ease;
+}
+
+.btn_back:hover{
+background-image: linear-gradient(to right,
+#00FF00,
+#0c3316);
+box-shadow: 1rem 2rem 3rem rgba(0,0,0,0.8);
+}
+
+#game_over{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.8s ease;
+}
+
+#game_over_heading{
+  color: white;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-family: 'Josefin Sans', sans-serif;;
+  letter-spacing: 4px;
+}
+#game_over_score_box{
+ background-image: linear-gradient(to right,
+  #00FF00,
+  #1b572b);
+  border-radius: 3px;
+}
+.score_heading{
+height: 4rem;
+margin: 0.5rem;
+color: rgb(247, 49, 15);
+}
+
+#game_over_score{
+  display: inline-block;
+  transform: translateY(-50%);
+  width: 60%;
+  border-radius: 3px;
+  padding: 2px 5px ;
+  font-weight: 700;
+  color: black;
+  font-size: 1.8rem;
+  font-family: 'Roboto',sans-serif;
+  background-color: white;
+  position: relative;
+}
+.home_page{
+ /* display: none; */
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%) rotateY(0deg);
+  width: 500px;
+  height: 500px;
+  padding-left: 4rem;
+  background-image: linear-gradient(to bottom,
+  rgba(0,255,0,1),
+  #1b572b);
+  box-shadow: 0 1rem 3rem rgba(0,0,0,0.5);
+  border-radius: 3px;
+  transform-origin: left;
+  border-left: 1rem solid red;
+  transition: all 1.4s ease;
+}
+
+.title{
+/* position: absolute; */
+font-family: inherit;
+text-align: center;
+color: white;
+width: 100%;
+top: 50%;
+border-radius: 2px;
+background-color: rgba(0,0,0,0.1);
+text-transform: uppercase;
+z-index: 1000;
+transform-origin: left;
+letter-spacing: 1.5px;
+transform: rotateZ(-90deg) translateX(-100%);
+/*letter-spacing: 2px; */
+}
+
+.list_options{
+  /* position: absolute; */
+  list-style: none;
+  text-align: center;
+  padding: 0% 15%;
+  top: 50%;
+}
+
+.options{
+  display: inline-block;
+  margin-top: 3rem;
+  border: none;
+  width: 100%;
+  background-color: rgba(255,255,255,0.9);
+  padding: 1rem 1.5rem;
+  outline: none;
+  font-size: 1.8rem;
+  letter-spacing: 3px;
+  font-family: 'Josefin Sans', sans-serif;
+  text-transform: uppercase;
+  border-radius: 4px;
+  color: rgb(0,100,0);
+  box-shadow: 0 1rem 3rem rgba(0,0,0,0.4);
+  cursor:pointer;
+  transition: all 0.4s ease;
+}
+
+.options:hover{
+transform: translateY(-3px);
+}
+
+.help{
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: white;
+    transform: translate(-50%,-50%);
+    opacity: 0;
+    display: none;
+    background-image: linear-gradient(to bottom,
+    rgba(0,255,0,1),
+    #1b572b);
+    box-shadow: 0 1rem 3rem rgba(0,0,0,0.5);
+    border-radius: 3px;
+    padding:0 2rem;
+    width: 455px;
+    height: 455px;
+    transition: all 0.8s ease;
+}
+.help >*{
+  margin-bottom: 1rem;
+  padding:5px ;
+  padding-bottom: 1rem;
+  border-radius: 2px;
+  border: 1px solid white;
+}
+h1:first-child{
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+.dir_help{
+  list-style-position: inside;
+}
+.dir_help h2{
+  color: red;
+}
+.dir_help::after{
+  clear: both;
+  content: "";
+  display: table;
+}
+.dir_help li{
+  position: relative;
+  width: 50%;
+  float: left;
+  padding: 0 2px;
+}
+.contr_but{
+  display: inline-block;
+  background-color: white;
+  color: black;
+  padding: 3px 5px;
+  border-radius: 3px;
+  transition: all 0.2s ease;
+} 
+.contr_but:hover{
+    transform: scale(1.1);
+}
+.food,.obstacle{
+    width: 2rem;
+    height: 2rem;
+    transform: translateY(30%) scale(1);
+    transition: all 0.2s ease;
+}
+.food:hover,.obstacle:hover{
+    transform: translateY(30%) scale(1.1);
+}
+.obstacle{
+    display: inline-block;
+    background-color: rgb(255,0,255);
+}
+@media only screen and (max-width : 500px),screen and (max-height : 500px)
+  {
+  html {
+    scroll-behavior: smooth;
+    font-size: 50%;
+  }
+  .home_page{
+    width: 400px;
+    height: 400px;
+  }
+  .help,#snake{
+      width: 340px;
+      height: 340px;
+  }
+}
+@media only screen and (max-width : 400px),screen and (max-height : 400px)
+{
+  html {
+    scroll-behavior: smooth;
+    font-size: 32%;
+  }
+  .home_page{
+    width: 270px;
+    height: 270px;
+  }
+  .help,#snake{
+      width: 240px;
+      height: 240px;
+  }
+}
