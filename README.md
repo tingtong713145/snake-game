@@ -23,6 +23,6 @@ There are two strategies for the snake in the demo mode </br>
 </ul>
 
 #### It also has swipe gestures to make it easy to play on mobile phones .</br> 
-#### Play the game at https://shobhit10058.github.io/Snake-game/.</br>
+#### Play the game at https://tingtong713145.github.io/Snake-game/.</br>
 #### If you save the game in your mobile through a browser and then open it, this launches like a normal game with the full screen occupied with the game.</br>
 
